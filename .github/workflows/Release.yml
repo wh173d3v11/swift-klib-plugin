@@ -4,6 +4,8 @@ on:
     push:
         tags:
             - 'v*.*.*'
+        branches:
+            - publishing-changes
 
 permissions:
     contents: write
@@ -11,8 +13,8 @@ permissions:
 jobs:
     publish-release:
         runs-on: ubuntu-latest
-        if: github.repository == 'ttypic/swift-klib-plugin'
-        timeout-minutes: 25
+        if: github.repository == 'wh173d3v11/swift-klib-plugin'
+        timeout-minutes: 26
 
         steps:
             - uses: actions/checkout@v4
