@@ -18,7 +18,7 @@ tasks.named<Test>("test") {
     useJUnitPlatform()
 }
 
-version = "0.7.0-SNAPSHOT"
+version = "0.7.0-dev"
 group = "io.github.wh173d3v11"
 
 kotlin {
