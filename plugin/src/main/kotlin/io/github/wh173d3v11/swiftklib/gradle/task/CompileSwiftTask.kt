@@ -1,9 +1,9 @@
-package io.github.ttypic.swiftklib.gradle.task
+package io.github.wh173d3v11.swiftklib.gradle.task
 
-import io.github.ttypic.swiftklib.gradle.CompileTarget
-import io.github.ttypic.swiftklib.gradle.EXTENSION_NAME
-import io.github.ttypic.swiftklib.gradle.templates.createPackageSwiftContents
-import io.github.ttypic.swiftklib.gradle.util.StringReplacingOutputStream
+import io.github.wh173d3v11.swiftklib.gradle.CompileTarget
+import io.github.wh173d3v11.swiftklib.gradle.EXTENSION_NAME
+import io.github.wh173d3v11.swiftklib.gradle.templates.createPackageSwiftContents
+import io.github.wh173d3v11.swiftklib.gradle.util.StringReplacingOutputStream
 import org.gradle.api.DefaultTask
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input

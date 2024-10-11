@@ -1,6 +1,6 @@
-package io.github.ttypic.swiftklib.gradle.task
+package io.github.wh173d3v11.swiftklib.gradle.task
 
-import io.github.ttypic.swiftklib.gradle.CompileTarget
+import io.github.wh173d3v11.swiftklib.gradle.CompileTarget
 
 internal fun CompileTarget.os() = when(this) {
     CompileTarget.iosX64 -> "iphonesimulator"

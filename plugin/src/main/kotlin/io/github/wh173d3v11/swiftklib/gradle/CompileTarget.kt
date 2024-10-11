@@ -1,4 +1,4 @@
-package io.github.ttypic.swiftklib.gradle
+package io.github.wh173d3v11.swiftklib.gradle
 
 import org.jetbrains.kotlin.konan.target.KonanTarget
 

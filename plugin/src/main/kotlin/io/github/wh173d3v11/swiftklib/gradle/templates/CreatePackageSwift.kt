@@ -1,4 +1,4 @@
-package io.github.ttypic.swiftklib.gradle.templates
+package io.github.wh173d3v11.swiftklib.gradle.templates
 
 internal fun createPackageSwiftContents(
     cinteropName: String,
@@ -8,6 +8,7 @@ internal fun createPackageSwiftContents(
 
     let package = Package(
         name: "$cinteropName",
+        platforms: [.iOS(.v13)],
         products: [
             .library(
                 name: "$cinteropName",

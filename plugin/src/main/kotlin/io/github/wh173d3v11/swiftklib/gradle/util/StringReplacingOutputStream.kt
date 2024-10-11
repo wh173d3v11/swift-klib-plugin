@@ -1,4 +1,4 @@
-package io.github.ttypic.swiftklib.gradle.util
+package io.github.wh173d3v11.swiftklib.gradle.util
 
 import java.io.BufferedReader
 import java.io.BufferedWriter

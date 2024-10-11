@@ -1,7 +1,8 @@
-package io.github.ttypic.swiftklib.gradle
+package io.github.wh173d3v11.swiftklib.gradle
 
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldContain
 import org.gradle.testkit.runner.BuildResult
 import org.gradle.testkit.runner.GradleRunner
 import org.gradle.testkit.runner.TaskOutcome
@@ -35,6 +36,7 @@ class CinteropModulesTest {
 
     @Test
     fun `build with imported UIKit framework is successful`() {
+        assumeMacos()
         testBuild(
             swiftCode = """
                 import UIKit
@@ -43,7 +45,9 @@ class CinteropModulesTest {
             """.trimIndent(),
             kotlinCode = """
                 import test.TestView
+                import kotlinx.cinterop.ExperimentalForeignApi
 
+                @OptIn(ExperimentalForeignApi::class)
                 val view = TestView()
             """.trimIndent(),
         ) {
@@ -53,9 +57,26 @@ class CinteropModulesTest {
         }
     }
 
+    @Test
+    fun `build on linux results in warning about unsupported OS`() {
+        assumeLinux()
+        testBuild {
+            output.shouldContain("Current host OS is not macOS. Disabling SwiftKlib plugin")
+        }
+    }
+
+    private fun assumeMacos() {
+        System.setProperty("os.name", "Mac OS X")
+    }
+
+    private fun assumeLinux() {
+        System.setProperty("os.name", "Linux")
+    }
+
+
     private fun testBuild(
         @Language("swift")
-        swiftCode: String,
+        swiftCode: String = "",
         @Language("kotlin")
         kotlinCode: String = "",
         swiftklibName: String = "test",
@@ -120,8 +141,12 @@ class CinteropModulesTest {
         swiftLocation.mkdirs()
         kotlinLocation.mkdirs()
 
-        swiftCodeFile.writeText(swiftCode)
-        kotlinCodeFile.writeText(kotlinCode)
+        if (swiftCode.isNotEmpty()) {
+            swiftCodeFile.writeText(swiftCode)
+        }
+        if (kotlinCode.isNotEmpty()) {
+            kotlinCodeFile.writeText(kotlinCode)
+        }
 
         GradleRunner.create()
             .withProjectDir(testProjectDir)

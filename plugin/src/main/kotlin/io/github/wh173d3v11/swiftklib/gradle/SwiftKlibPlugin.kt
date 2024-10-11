@@ -1,12 +1,13 @@
-package io.github.ttypic.swiftklib.gradle
+package io.github.wh173d3v11.swiftklib.gradle
 
-import io.github.ttypic.swiftklib.gradle.task.CompileSwiftTask
+import io.github.wh173d3v11.swiftklib.gradle.task.CompileSwiftTask
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.model.ObjectFactory
 import org.gradle.configurationcache.extensions.capitalized
 import org.jetbrains.kotlin.gradle.tasks.CInteropProcess
+import org.jetbrains.kotlin.konan.target.HostManager
 
 const val EXTENSION_NAME = "swiftklib"
 
@@ -21,7 +22,10 @@ class SwiftKlibPlugin : Plugin<Project> {
             }
 
         project.extensions.add(EXTENSION_NAME, swiftKlibEntries)
-
+        if (HostManager.hostIsMac.not()) {
+            logger.warn("Current host OS is not macOS. Disabling SwiftKlib plugin")
+            return
+        }
         swiftKlibEntries.all { entry ->
             val name: String = entry.name
 
