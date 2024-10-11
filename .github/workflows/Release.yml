@@ -11,7 +11,7 @@ permissions:
 jobs:
     publish-release:
         runs-on: ubuntu-latest
-        if: github.repository == 'ttypic/swift-klib-plugin'
+        if: github.repository == 'wh173d3v11/swift-klib-plugin'
         timeout-minutes: 25
 
         steps:
